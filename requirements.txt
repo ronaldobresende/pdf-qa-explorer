@@ -1,0 +1,10 @@
+torch
+streamlit==1.35.0
+langchain==0.2.6
+langchain-community==0.2.6
+huggingface_hub==0.22.2  # <- Versão fixada antes da mudança
+sentence-transformers==2.2.2
+pypdf
+faiss-cpu
+python-dotenv
+

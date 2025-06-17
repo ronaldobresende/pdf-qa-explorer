@@ -135,6 +135,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+pdf_env/
+temp_cached.pdf
 
 # Spyder project settings
 .spyderproject
