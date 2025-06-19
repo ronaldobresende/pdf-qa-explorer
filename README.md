@@ -1,6 +1,6 @@
-# Assistente de Estudos FocoTotal
+# PDF-QA Explorer
 
-O **Assistente de Estudos FocoTotal** é uma aplicação web desenvolvida em Python com Streamlit que permite ao usuário fazer upload de arquivos PDF e interagir com o conteúdo por meio de perguntas em linguagem natural. Utilizando inteligência artificial, o sistema responde às dúvidas do usuário com base no material enviado, citando as fontes do próprio documento.
+O **PDF-QA Explorer** é uma aplicação web desenvolvida em Python com Streamlit que permite ao usuário fazer upload de arquivos PDF e interagir com o conteúdo por meio de perguntas em linguagem natural. Utilizando inteligência artificial, o sistema responde às dúvidas do usuário com base no material enviado, citando as fontes do próprio documento.
 
 ## Funcionalidades
 
@@ -10,14 +10,24 @@ O **Assistente de Estudos FocoTotal** é uma aplicação web desenvolvida em Pyt
 - Citação das fontes do documento nas respostas
 - Interface de chat simples e intuitiva
 
-## Tecnologias Utilizadas
+## Arquitetura do Aplicativo
+
+A arquitetura do PDF-QA Explorer é composta pelos seguintes componentes principais:
+
+- **Streamlit**: Responsável pela interface web, permitindo o upload de arquivos PDF, entrada de perguntas e exibição das respostas.
+- **LangChain**: Biblioteca que integra o modelo de linguagem (LLM) ao fluxo de perguntas e respostas, gerenciando a extração de texto do PDF, a criação de retrievers (buscadores de contexto) e a orquestração das respostas.
+- **Google Gemini (LLM)**: Modelo de linguagem de grande porte utilizado para interpretar perguntas e gerar respostas baseadas no conteúdo do PDF, acessado via API do Google.
+- **FAISS**: Utilizado para indexação e busca vetorial eficiente dos blocos de texto extraídos do PDF.
+- **Sentence Transformers**: Responsável pela geração de embeddings semânticos dos textos, facilitando a busca contextualizada das informações.
+
+### Tecnologias Utilizadas
 
 - [Python 3.12+](https://www.python.org/)
 - [Streamlit](https://streamlit.io/)
 - [LangChain](https://python.langchain.com/)
-- [HuggingFace Transformers](https://huggingface.co/)
 - [FAISS](https://github.com/facebookresearch/faiss)
 - [Sentence Transformers](https://www.sbert.net/)
+
 
 ## Instalação
 
@@ -41,8 +51,17 @@ O **Assistente de Estudos FocoTotal** é uma aplicação web desenvolvida em Pyt
    pip install -r requirements.txt
    ```
 
-   > **Atenção:**  
-   > Se você encontrar erros relacionados a caminhos longos no Windows, ative o suporte a long paths conforme [esta documentação](https://pip.pypa.io/warnings/enable-long-paths).
+4. **Obtenha uma chave de API do Gemini (Google):**
+   - Acesse [Google AI Studio](https://aistudio.google.com/app/apikey) e gere sua chave de API.
+
+5. **Configure a chave de API do Gemini:**
+   - Crie um arquivo `.env` na raiz do projeto com o conteúdo:
+     ```
+     GEMINI_API_KEY=sua_chave_aqui
+     ```
+   - Ou defina a variável de ambiente no terminal antes de rodar o app:
+     ```sh
+     set GEMINI_API_KEY=sua_chave_aqui
 
 ## Como Rodar
 

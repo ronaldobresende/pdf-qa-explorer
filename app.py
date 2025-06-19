@@ -5,8 +5,10 @@ from vector_store import create_vector_store
 from llm_setup import create_llm
 from retriever_setup import create_multi_query_retriever
 from qa_chain import get_qa_chain
+from dotenv import load_dotenv
+load_dotenv()
 
-st.set_page_config(page_title="Assistente de Estudos FocoTotal", layout="wide")
+st.set_page_config(page_title="Assistente para exploração de documentos", layout="wide")
 
 @st.cache_resource(show_spinner=False)
 def process_pdf_and_create_retriever(pdf_bytes):
@@ -22,6 +24,7 @@ def process_pdf_and_create_retriever(pdf_bytes):
     time.sleep(0.5)
 
     progress_bar.progress(50, text="Carregando modelo LLM...")
+    import os
     llm = create_llm()
     time.sleep(0.5)
 
@@ -35,7 +38,7 @@ def process_pdf_and_create_retriever(pdf_bytes):
 
     return retriever, llm
 
-st.title("📚 Assistente de Estudos FocoTotal")
+st.title("📚 Assistente para exploração de documentos")
 st.write("Faça o upload do seu material em PDF e tire suas dúvidas!")
 
 uploaded_file = st.file_uploader("Escolha um arquivo PDF", type="pdf")
